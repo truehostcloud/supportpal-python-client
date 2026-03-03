@@ -1,0 +1,724 @@
+openapi: 3.0.0
+info:
+  title: SupportPal REST API
+  version: 1.0.0
+  description: API for accessing SupportPal tickets, messages, operators, and feedback
+    for AI-powered ticket analysis.
+servers:
+- url: https://{domain}/api
+  variables:
+    domain:
+      default: yourdomain.com
+      description: Your SupportPal instance domain
+security:
+- BasicAuth: []
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: API token as username, 'X' as password
+  schemas:
+    Department:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        order:
+          type: integer
+        parent:
+          type: integer
+          nullable: true
+        public:
+          type: integer
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    Channel:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        enabled:
+          type: integer
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    UserSummary:
+      type: object
+      description: A user (customer) account embedded in ticket and message responses
+      properties:
+        id:
+          type: integer
+        firstname:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+          format: email
+        email_verified:
+          type: integer
+        organisation_id:
+          type: integer
+          nullable: true
+        organisation_access_level:
+          type: integer
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        language_code:
+          type: string
+          nullable: true
+        timezone:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+        formatted_name:
+          type: string
+    TicketStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        colour:
+          type: string
+        auto_close:
+          type: integer
+        order:
+          type: integer
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    Priority:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        colour:
+          type: string
+        order:
+          type: integer
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    Ticket:
+      type: object
+      properties:
+        id:
+          type: integer
+        number:
+          type: string
+        department_id:
+          type: integer
+        department_email_id:
+          type: integer
+          nullable: true
+        brand_id:
+          type: integer
+        channel_id:
+          type: integer
+        user_id:
+          type: integer
+        status_id:
+          type: integer
+        priority_id:
+          type: integer
+        sla_plan_id:
+          type: integer
+          nullable: true
+        subject:
+          type: string
+        due_time:
+          type: integer
+          nullable: true
+        resolved_time:
+          type: integer
+          nullable: true
+        cc:
+          type: array
+          items:
+            type: string
+        locked:
+          type: integer
+        merged:
+          type: integer
+        internal:
+          type: integer
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+        deleted_at:
+          type: integer
+          nullable: true
+        frontend_url:
+          type: string
+        operator_url:
+          type: string
+        token:
+          type: string
+        department:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Department'
+        channel:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Channel'
+        user:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/UserSummary'
+        status:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/TicketStatus'
+        priority:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Priority'
+        slaplan:
+          type: object
+          nullable: true
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+        ticket_id:
+          type: integer
+        channel_id:
+          type: integer
+        user_id:
+          type: integer
+        user_ip_address:
+          type: string
+          nullable: true
+        by:
+          type: integer
+          description: 'Author type: 0 = operator, 1 = user (customer)'
+        type:
+          type: integer
+          description: 'Message type: 0 = message, 1 = internal note'
+        text:
+          type: string
+        is_draft:
+          type: integer
+        social_id:
+          type: string
+          nullable: true
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+        user:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/UserSummary'
+    Operator:
+      type: object
+      properties:
+        id:
+          type: integer
+        firstname:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+          format: email
+        email_verified:
+          type: integer
+        active:
+          type: integer
+        organisation_id:
+          type: integer
+          nullable: true
+        organisation_access_level:
+          type: integer
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        language_code:
+          type: string
+          nullable: true
+        timezone:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+        formatted_name:
+          type: string
+        phonenumbers:
+          type: array
+          items:
+            type: object
+        groups:
+          type: array
+          items:
+            type: object
+    FeedbackForm:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        email_template_id:
+          type: integer
+          nullable: true
+        condition_group_type:
+          type: integer
+        expiry_time:
+          type: integer
+          nullable: true
+        time_after_resolved:
+          type: integer
+          nullable: true
+        fields:
+          type: array
+          items:
+            type: object
+        translations:
+          type: array
+          items:
+            type: object
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    Feedback:
+      type: object
+      properties:
+        id:
+          type: integer
+        ticket_id:
+          type: integer
+        form_id:
+          type: integer
+        rating:
+          type: integer
+          nullable: true
+          description: 'Customer satisfaction rating: null = not yet responded, 0
+            = bad, 1 = good, 2 = neutral'
+        fields_answered:
+          type: integer
+        token:
+          type: string
+        expiry_time:
+          type: integer
+        values:
+          type: array
+          items:
+            type: object
+        form:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/FeedbackForm'
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    TicketResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+          nullable: true
+        data:
+          $ref: '#/components/schemas/Ticket'
+    TicketListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+          nullable: true
+        count:
+          type: integer
+          description: Total number of records matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ticket'
+    MessageResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+          nullable: true
+        data:
+          $ref: '#/components/schemas/Message'
+    MessageListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+          nullable: true
+        count:
+          type: integer
+          description: Total number of records matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+    OperatorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+          nullable: true
+        data:
+          $ref: '#/components/schemas/Operator'
+    OperatorListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+          nullable: true
+        count:
+          type: integer
+          description: Total number of records matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Operator'
+    FeedbackListResponse:
+      type: object
+      description: Both the list and single-resource feedback endpoints return an
+        array in data.
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+          nullable: true
+        count:
+          type: integer
+          description: Total number of records matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Feedback'
+paths:
+  /ticket/ticket:
+    get:
+      summary: List tickets
+      operationId: listTickets
+      tags:
+      - Ticket
+      parameters:
+      - name: department
+        in: query
+        description: Filter by department ID(s), comma delimited e.g. 1,2,3
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter by status ID(s), comma delimited e.g. 1,2,3
+        schema:
+          type: string
+      - name: assigned
+        in: query
+        description: Filter by assigned operator ID(s), use -1 for unassigned tickets
+        schema:
+          type: string
+      - name: start
+        in: query
+        description: The first result offset (1-indexed)
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        description: The number of results to fetch per page
+        schema:
+          type: integer
+          default: 50
+      - name: order_column
+        in: query
+        schema:
+          type: string
+          default: id
+      - name: order_direction
+        in: query
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+      - name: created_at_min
+        in: query
+        description: Filter tickets created since this UNIX timestamp
+        schema:
+          type: integer
+      - name: created_at_max
+        in: query
+        description: Filter tickets created before this UNIX timestamp
+        schema:
+          type: integer
+      - name: updated_at_min
+        in: query
+        description: Filter tickets updated since this UNIX timestamp
+        schema:
+          type: integer
+      - name: updated_at_max
+        in: query
+        description: Filter tickets updated before this UNIX timestamp
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketListResponse'
+  /ticket/ticket/{id}:
+    get:
+      summary: Get ticket by ID
+      operationId: getTicket
+      tags:
+      - Ticket
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/message:
+    get:
+      summary: List messages for a ticket
+      operationId: listMessages
+      tags:
+      - Message
+      parameters:
+      - name: ticket_id
+        in: query
+        required: true
+        description: Ticket ID to fetch messages for
+        schema:
+          type: integer
+      - name: type
+        in: query
+        description: 'Filter by message type: 0 = message, 1 = internal note'
+        schema:
+          type: integer
+      - name: by
+        in: query
+        description: 'Filter by author type: 0 = operator, 1 = user (customer)'
+        schema:
+          type: integer
+      - name: include_draft
+        in: query
+        description: Whether to include draft messages
+        schema:
+          type: integer
+          default: 0
+      - name: start
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      - name: order_column
+        in: query
+        schema:
+          type: string
+          default: id
+      - name: order_direction
+        in: query
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageListResponse'
+  /ticket/message/{id}:
+    get:
+      summary: Get message by ID
+      operationId: getMessage
+      tags:
+      - Message
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+  /user/operator:
+    get:
+      summary: List operators
+      operationId: listOperators
+      tags:
+      - Operator
+      parameters:
+      - name: active
+        in: query
+        description: 'Filter by active status: 1 = active, 0 = inactive'
+        schema:
+          type: integer
+      - name: email
+        in: query
+        description: Search for operators by email
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperatorListResponse'
+  /user/operator/{id}:
+    get:
+      summary: Get operator by ID
+      operationId: getOperator
+      tags:
+      - Operator
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperatorResponse'
+  /ticket/feedback:
+    get:
+      summary: List ticket feedback
+      operationId: listFeedback
+      tags:
+      - Feedback
+      parameters:
+      - name: ticket_id
+        in: query
+        description: Only show feedback for the given ticket ID
+        schema:
+          type: integer
+      - name: rating
+        in: query
+        description: 'Filter by rating: 0 = bad, 1 = good, 2 = neutral'
+        schema:
+          type: integer
+      - name: start
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedbackListResponse'
+  /ticket/feedback/{id}:
+    get:
+      summary: Get feedback by ID
+      operationId: getFeedback
+      tags:
+      - Feedback
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: 'Successful response. Note: returns an array in data even for
+            a single resource.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedbackListResponse'

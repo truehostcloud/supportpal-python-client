@@ -1,0 +1,9 @@
+{
+    "packageName": "supportpal_api_client",
+    "projectName": "supportpal-python-client",
+    "apiVersion": "1.0.0",
+    "packageVersion": "1.0.0",
+    "outputDir": "./",
+    "modelPackage": "models",
+    "apiPackage": "api"
+}
