@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.ticket_status import TicketStatus
+from supportpal_client.models.ticket_status import TicketStatus
 
 class TestTicketStatus(unittest.TestCase):
     """TicketStatus unit test stubs"""

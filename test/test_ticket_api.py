@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.api.ticket_api import TicketApi
+from supportpal_client.api.ticket_api import TicketApi
 
 
 class TestTicketApi(unittest.TestCase):

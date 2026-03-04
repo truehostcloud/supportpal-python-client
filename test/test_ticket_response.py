@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.ticket_response import TicketResponse
+from supportpal_client.models.ticket_response import TicketResponse
 
 class TestTicketResponse(unittest.TestCase):
     """TicketResponse unit test stubs"""
@@ -37,7 +37,7 @@ class TestTicketResponse(unittest.TestCase):
             return TicketResponse(
                 status = '',
                 message = '',
-                data = supportpal_api_client.models.ticket.Ticket(
+                data = supportpal_client.models.ticket.Ticket(
                     id = 56, 
                     number = '', 
                     department_id = 56, 
@@ -68,7 +68,7 @@ class TestTicketResponse(unittest.TestCase):
                     user = null, 
                     status = null, 
                     priority = null, 
-                    slaplan = supportpal_api_client.models.slaplan.slaplan(), )
+                    slaplan = supportpal_client.models.slaplan.slaplan(), )
             )
         else:
             return TicketResponse(

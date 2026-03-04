@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.department import Department
+from supportpal_client.models.department import Department
 
 class TestDepartment(unittest.TestCase):
     """Department unit test stubs"""

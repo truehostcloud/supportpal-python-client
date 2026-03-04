@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.ticket_list_response import TicketListResponse
+from supportpal_client.models.ticket_list_response import TicketListResponse
 
 class TestTicketListResponse(unittest.TestCase):
     """TicketListResponse unit test stubs"""
@@ -39,7 +39,7 @@ class TestTicketListResponse(unittest.TestCase):
                 message = '',
                 count = 56,
                 data = [
-                    supportpal_api_client.models.ticket.Ticket(
+                    supportpal_client.models.ticket.Ticket(
                         id = 56, 
                         number = '', 
                         department_id = 56, 
@@ -70,7 +70,7 @@ class TestTicketListResponse(unittest.TestCase):
                         user = null, 
                         status = null, 
                         priority = null, 
-                        slaplan = supportpal_api_client.models.slaplan.slaplan(), )
+                        slaplan = supportpal_client.models.slaplan.slaplan(), )
                     ]
             )
         else:

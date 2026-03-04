@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.api.operator_api import OperatorApi
+from supportpal_client.api.operator_api import OperatorApi
 
 
 class TestOperatorApi(unittest.TestCase):

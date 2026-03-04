@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.feedback_list_response import FeedbackListResponse
+from supportpal_client.models.feedback_list_response import FeedbackListResponse
 
 class TestFeedbackListResponse(unittest.TestCase):
     """FeedbackListResponse unit test stubs"""
@@ -39,7 +39,7 @@ class TestFeedbackListResponse(unittest.TestCase):
                 message = '',
                 count = 56,
                 data = [
-                    supportpal_api_client.models.feedback.Feedback(
+                    supportpal_client.models.feedback.Feedback(
                         id = 56, 
                         ticket_id = 56, 
                         form_id = 56, 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.message_list_response import MessageListResponse
+from supportpal_client.models.message_list_response import MessageListResponse
 
 class TestMessageListResponse(unittest.TestCase):
     """MessageListResponse unit test stubs"""
@@ -39,7 +39,7 @@ class TestMessageListResponse(unittest.TestCase):
                 message = '',
                 count = 56,
                 data = [
-                    supportpal_api_client.models.message.Message(
+                    supportpal_client.models.message.Message(
                         id = 56, 
                         ticket_id = 56, 
                         channel_id = 56, 

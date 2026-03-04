@@ -51,10 +51,10 @@ __all__ = [
 ]
 
 # import apis into sdk package
-from api.feedback_api import FeedbackApi as FeedbackApi
-from api.message_api import MessageApi as MessageApi
-from api.operator_api import OperatorApi as OperatorApi
-from api.ticket_api import TicketApi as TicketApi
+from supportpal_client.api.feedback_api import FeedbackApi as FeedbackApi
+from supportpal_client.api.message_api import MessageApi as MessageApi
+from supportpal_client.api.operator_api import OperatorApi as OperatorApi
+from supportpal_client.api.ticket_api import TicketApi as TicketApi
 
 # import ApiClient
 from supportpal_client.api_response import ApiResponse as ApiResponse

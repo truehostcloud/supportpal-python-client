@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.ticket import Ticket
+from supportpal_client.models.ticket import Ticket
 
 class TestTicket(unittest.TestCase):
     """Ticket unit test stubs"""
@@ -60,7 +60,7 @@ class TestTicket(unittest.TestCase):
                 frontend_url = '',
                 operator_url = '',
                 token = '',
-                department = supportpal_api_client.models.department.Department(
+                department = supportpal_client.models.department.Department(
                     id = 56, 
                     name = '', 
                     description = '', 
@@ -69,13 +69,13 @@ class TestTicket(unittest.TestCase):
                     public = 56, 
                     created_at = 56, 
                     updated_at = 56, ),
-                channel = supportpal_api_client.models.channel.Channel(
+                channel = supportpal_client.models.channel.Channel(
                     id = 56, 
                     name = '', 
                     enabled = 56, 
                     created_at = 56, 
                     updated_at = 56, ),
-                user = supportpal_api_client.models.user_summary.UserSummary(
+                user = supportpal_client.models.user_summary.UserSummary(
                     id = 56, 
                     firstname = '', 
                     lastname = '', 
@@ -90,7 +90,7 @@ class TestTicket(unittest.TestCase):
                     created_at = 56, 
                     updated_at = 56, 
                     formatted_name = '', ),
-                status = supportpal_api_client.models.ticket_status.TicketStatus(
+                status = supportpal_client.models.ticket_status.TicketStatus(
                     id = 56, 
                     name = '', 
                     colour = '', 
@@ -98,7 +98,7 @@ class TestTicket(unittest.TestCase):
                     order = 56, 
                     created_at = 56, 
                     updated_at = 56, ),
-                priority = supportpal_api_client.models.priority.Priority(
+                priority = supportpal_client.models.priority.Priority(
                     id = 56, 
                     name = '', 
                     colour = '', 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.message_response import MessageResponse
+from supportpal_client.models.message_response import MessageResponse
 
 class TestMessageResponse(unittest.TestCase):
     """MessageResponse unit test stubs"""
@@ -37,7 +37,7 @@ class TestMessageResponse(unittest.TestCase):
             return MessageResponse(
                 status = '',
                 message = '',
-                data = supportpal_api_client.models.message.Message(
+                data = supportpal_client.models.message.Message(
                     id = 56, 
                     ticket_id = 56, 
                     channel_id = 56, 

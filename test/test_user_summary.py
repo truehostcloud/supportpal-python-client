@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.user_summary import UserSummary
+from supportpal_client.models.user_summary import UserSummary
 
 class TestUserSummary(unittest.TestCase):
     """UserSummary unit test stubs"""

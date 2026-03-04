@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.api.message_api import MessageApi
+from supportpal_client.api.message_api import MessageApi
 
 
 class TestMessageApi(unittest.TestCase):

@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.feedback_form import FeedbackForm
+from supportpal_client.models.feedback_form import FeedbackForm
 
 class TestFeedbackForm(unittest.TestCase):
     """FeedbackForm unit test stubs"""

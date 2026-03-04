@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.operator_list_response import OperatorListResponse
+from supportpal_client.models.operator_list_response import OperatorListResponse
 
 class TestOperatorListResponse(unittest.TestCase):
     """OperatorListResponse unit test stubs"""
@@ -39,7 +39,7 @@ class TestOperatorListResponse(unittest.TestCase):
                 message = '',
                 count = 56,
                 data = [
-                    supportpal_api_client.models.operator.Operator(
+                    supportpal_client.models.operator.Operator(
                         id = 56, 
                         firstname = '', 
                         lastname = '', 

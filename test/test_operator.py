@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.operator import Operator
+from supportpal_client.models.operator import Operator
 
 class TestOperator(unittest.TestCase):
     """Operator unit test stubs"""

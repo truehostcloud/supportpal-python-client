@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.message import Message
+from supportpal_client.models.message import Message
 
 class TestMessage(unittest.TestCase):
     """Message unit test stubs"""
@@ -47,7 +47,7 @@ class TestMessage(unittest.TestCase):
                 social_id = '',
                 created_at = 56,
                 updated_at = 56,
-                user = supportpal_api_client.models.user_summary.UserSummary(
+                user = supportpal_client.models.user_summary.UserSummary(
                     id = 56, 
                     firstname = '', 
                     lastname = '', 

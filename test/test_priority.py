@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.priority import Priority
+from supportpal_client.models.priority import Priority
 
 class TestPriority(unittest.TestCase):
     """Priority unit test stubs"""

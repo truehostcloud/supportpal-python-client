@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.feedback import Feedback
+from supportpal_client.models.feedback import Feedback
 
 class TestFeedback(unittest.TestCase):
     """Feedback unit test stubs"""
@@ -45,7 +45,7 @@ class TestFeedback(unittest.TestCase):
                 values = [
                     None
                     ],
-                form = supportpal_api_client.models.feedback_form.FeedbackForm(
+                form = supportpal_client.models.feedback_form.FeedbackForm(
                     id = 56, 
                     name = '', 
                     description = '', 

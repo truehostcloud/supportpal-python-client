@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.api.feedback_api import FeedbackApi
+from supportpal_client.api.feedback_api import FeedbackApi
 
 
 class TestFeedbackApi(unittest.TestCase):

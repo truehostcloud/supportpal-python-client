@@ -14,7 +14,7 @@
 
 import unittest
 
-from supportpal_api_client.models.channel import Channel
+from supportpal_client.models.channel import Channel
 
 class TestChannel(unittest.TestCase):
     """Channel unit test stubs"""
