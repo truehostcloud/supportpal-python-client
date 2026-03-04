@@ -1,4 +1,4 @@
-# supportpal_api_client.FeedbackApi
+# supportpal_client.FeedbackApi
 
 All URIs are relative to *https://yourdomain.com/api*
 
@@ -18,14 +18,14 @@ Get feedback by ID
 * Basic Authentication (BasicAuth):
 
 ```python
-import supportpal_api_client
-from supportpal_api_client.models.feedback_list_response import FeedbackListResponse
-from supportpal_api_client.rest import ApiException
+import supportpal_client
+from supportpal_client.models.feedback_list_response import FeedbackListResponse
+from supportpal_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://yourdomain.com/api
 # See configuration.py for a list of all supported configuration parameters.
-configuration = supportpal_api_client.Configuration(
+configuration = supportpal_client.Configuration(
     host = "https://yourdomain.com/api"
 )
 
@@ -35,15 +35,15 @@ configuration = supportpal_api_client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: BasicAuth
-configuration = supportpal_api_client.Configuration(
+configuration = supportpal_client.Configuration(
     username = os.environ["USERNAME"],
     password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
-with supportpal_api_client.ApiClient(configuration) as api_client:
+with supportpal_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = supportpal_api_client.FeedbackApi(api_client)
+    api_instance = supportpal_client.FeedbackApi(api_client)
     id = 56 # int | 
 
     try:
@@ -95,14 +95,14 @@ List ticket feedback
 * Basic Authentication (BasicAuth):
 
 ```python
-import supportpal_api_client
-from supportpal_api_client.models.feedback_list_response import FeedbackListResponse
-from supportpal_api_client.rest import ApiException
+import supportpal_client
+from supportpal_client.models.feedback_list_response import FeedbackListResponse
+from supportpal_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://yourdomain.com/api
 # See configuration.py for a list of all supported configuration parameters.
-configuration = supportpal_api_client.Configuration(
+configuration = supportpal_client.Configuration(
     host = "https://yourdomain.com/api"
 )
 
@@ -112,15 +112,15 @@ configuration = supportpal_api_client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: BasicAuth
-configuration = supportpal_api_client.Configuration(
+configuration = supportpal_client.Configuration(
     username = os.environ["USERNAME"],
     password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
-with supportpal_api_client.ApiClient(configuration) as api_client:
+with supportpal_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = supportpal_api_client.FeedbackApi(api_client)
+    api_instance = supportpal_client.FeedbackApi(api_client)
     ticket_id = 56 # int | Only show feedback for the given ticket ID (optional)
     rating = 56 # int | Filter by rating: 0 = bad, 1 = good, 2 = neutral (optional)
     start = 1 # int |  (optional) (default to 1)

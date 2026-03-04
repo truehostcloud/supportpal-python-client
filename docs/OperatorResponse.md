@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from supportpal_api_client.models.operator_response import OperatorResponse
+from supportpal_client.models.operator_response import OperatorResponse
 
 # TODO update the JSON string below
 json = "{}"

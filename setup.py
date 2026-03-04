@@ -18,7 +18,7 @@ from setuptools import setup, find_packages  # noqa: H301
 #
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
-NAME = "supportpal-api-client"
+NAME = "supportpal-python-client"
 VERSION = "1.0.0"
 PYTHON_REQUIRES = ">= 3.9"
 REQUIRES = [
@@ -43,5 +43,5 @@ setup(
     long_description="""\
     API for accessing SupportPal tickets, messages, operators, and feedback for AI-powered ticket analysis.
     """,  # noqa: E501
-    package_data={"supportpal_api_client": ["py.typed"]},
+    package_data={"supportpal_client": ["py.typed"]},
 )

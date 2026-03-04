@@ -19,18 +19,18 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from supportpal_api_client.models.message import Message
+from supportpal_client.models.ticket import Ticket
 from typing import Optional, Set
 from typing_extensions import Self
 
-class MessageListResponse(BaseModel):
+class TicketListResponse(BaseModel):
     """
-    MessageListResponse
+    TicketListResponse
     """ # noqa: E501
     status: Optional[StrictStr] = None
     message: Optional[StrictStr] = None
     count: Optional[StrictInt] = Field(default=None, description="Total number of records matching the query")
-    data: Optional[List[Message]] = None
+    data: Optional[List[Ticket]] = None
     __properties: ClassVar[List[str]] = ["status", "message", "count", "data"]
 
     model_config = ConfigDict(
@@ -52,7 +52,7 @@ class MessageListResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MessageListResponse from a JSON string"""
+        """Create an instance of TicketListResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -89,7 +89,7 @@ class MessageListResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MessageListResponse from a dict"""
+        """Create an instance of TicketListResponse from a dict"""
         if obj is None:
             return None
 
@@ -100,7 +100,7 @@ class MessageListResponse(BaseModel):
             "status": obj.get("status"),
             "message": obj.get("message"),
             "count": obj.get("count"),
-            "data": [Message.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None
+            "data": [Ticket.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None
         })
         return _obj
 

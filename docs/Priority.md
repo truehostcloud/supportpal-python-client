@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from supportpal_api_client.models.priority import Priority
+from supportpal_client.models.priority import Priority
 
 # TODO update the JSON string below
 json = "{}"

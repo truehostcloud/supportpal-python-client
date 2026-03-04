@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from supportpal_api_client.models.channel import Channel
+from supportpal_client.models.channel import Channel
 
 # TODO update the JSON string below
 json = "{}"

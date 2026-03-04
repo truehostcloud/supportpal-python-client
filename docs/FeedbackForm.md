@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from supportpal_api_client.models.feedback_form import FeedbackForm
+from supportpal_client.models.feedback_form import FeedbackForm
 
 # TODO update the JSON string below
 json = "{}"

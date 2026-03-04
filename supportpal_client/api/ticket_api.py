@@ -18,12 +18,12 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
-from supportpal_api_client.models.ticket_list_response import TicketListResponse
-from supportpal_api_client.models.ticket_response import TicketResponse
+from supportpal_client.models.ticket_list_response import TicketListResponse
+from supportpal_client.models.ticket_response import TicketResponse
 
-from supportpal_api_client.api_client import ApiClient, RequestSerialized
-from supportpal_api_client.api_response import ApiResponse
-from supportpal_api_client.rest import RESTResponseType
+from supportpal_client.api_client import ApiClient, RequestSerialized
+from supportpal_client.api_response import ApiResponse
+from supportpal_client.rest import RESTResponseType
 
 
 class TicketApi:

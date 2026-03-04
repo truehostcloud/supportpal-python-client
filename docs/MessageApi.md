@@ -1,4 +1,4 @@
-# supportpal_api_client.MessageApi
+# supportpal_client.MessageApi
 
 All URIs are relative to *https://yourdomain.com/api*
 
@@ -18,14 +18,14 @@ Get message by ID
 * Basic Authentication (BasicAuth):
 
 ```python
-import supportpal_api_client
-from supportpal_api_client.models.message_response import MessageResponse
-from supportpal_api_client.rest import ApiException
+import supportpal_client
+from supportpal_client.models.message_response import MessageResponse
+from supportpal_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://yourdomain.com/api
 # See configuration.py for a list of all supported configuration parameters.
-configuration = supportpal_api_client.Configuration(
+configuration = supportpal_client.Configuration(
     host = "https://yourdomain.com/api"
 )
 
@@ -35,15 +35,15 @@ configuration = supportpal_api_client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: BasicAuth
-configuration = supportpal_api_client.Configuration(
+configuration = supportpal_client.Configuration(
     username = os.environ["USERNAME"],
     password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
-with supportpal_api_client.ApiClient(configuration) as api_client:
+with supportpal_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = supportpal_api_client.MessageApi(api_client)
+    api_instance = supportpal_client.MessageApi(api_client)
     id = 56 # int | 
 
     try:
@@ -95,14 +95,14 @@ List messages for a ticket
 * Basic Authentication (BasicAuth):
 
 ```python
-import supportpal_api_client
-from supportpal_api_client.models.message_list_response import MessageListResponse
-from supportpal_api_client.rest import ApiException
+import supportpal_client
+from supportpal_client.models.message_list_response import MessageListResponse
+from supportpal_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://yourdomain.com/api
 # See configuration.py for a list of all supported configuration parameters.
-configuration = supportpal_api_client.Configuration(
+configuration = supportpal_client.Configuration(
     host = "https://yourdomain.com/api"
 )
 
@@ -112,15 +112,15 @@ configuration = supportpal_api_client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: BasicAuth
-configuration = supportpal_api_client.Configuration(
+configuration = supportpal_client.Configuration(
     username = os.environ["USERNAME"],
     password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
-with supportpal_api_client.ApiClient(configuration) as api_client:
+with supportpal_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = supportpal_api_client.MessageApi(api_client)
+    api_instance = supportpal_client.MessageApi(api_client)
     ticket_id = 56 # int | Ticket ID to fetch messages for
     type = 56 # int | Filter by message type: 0 = message, 1 = internal note (optional)
     by = 56 # int | Filter by author type: 0 = operator, 1 = user (customer) (optional)

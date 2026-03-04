@@ -17,20 +17,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from supportpal_api_client.models.message import Message
+from supportpal_client.models.message import Message
 from typing import Optional, Set
 from typing_extensions import Self
 
-class MessageResponse(BaseModel):
+class MessageListResponse(BaseModel):
     """
-    MessageResponse
+    MessageListResponse
     """ # noqa: E501
     status: Optional[StrictStr] = None
     message: Optional[StrictStr] = None
-    data: Optional[Message] = None
-    __properties: ClassVar[List[str]] = ["status", "message", "data"]
+    count: Optional[StrictInt] = Field(default=None, description="Total number of records matching the query")
+    data: Optional[List[Message]] = None
+    __properties: ClassVar[List[str]] = ["status", "message", "count", "data"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -51,7 +52,7 @@ class MessageResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MessageResponse from a JSON string"""
+        """Create an instance of MessageListResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,9 +73,13 @@ class MessageResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of data
+        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
+        _items = []
         if self.data:
-            _dict['data'] = self.data.to_dict()
+            for _item_data in self.data:
+                if _item_data:
+                    _items.append(_item_data.to_dict())
+            _dict['data'] = _items
         # set to None if message (nullable) is None
         # and model_fields_set contains the field
         if self.message is None and "message" in self.model_fields_set:
@@ -84,7 +89,7 @@ class MessageResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MessageResponse from a dict"""
+        """Create an instance of MessageListResponse from a dict"""
         if obj is None:
             return None
 
@@ -94,7 +99,8 @@ class MessageResponse(BaseModel):
         _obj = cls.model_validate({
             "status": obj.get("status"),
             "message": obj.get("message"),
-            "data": Message.from_dict(obj["data"]) if obj.get("data") is not None else None
+            "count": obj.get("count"),
+            "data": [Message.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None
         })
         return _obj
 

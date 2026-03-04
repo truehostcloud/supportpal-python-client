@@ -19,26 +19,28 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from supportpal_api_client.models.feedback_form import FeedbackForm
+from supportpal_client.models.user_summary import UserSummary
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Feedback(BaseModel):
+class Message(BaseModel):
     """
-    Feedback
+    Message
     """ # noqa: E501
     id: Optional[StrictInt] = None
     ticket_id: Optional[StrictInt] = None
-    form_id: Optional[StrictInt] = None
-    rating: Optional[StrictInt] = Field(default=None, description="Customer satisfaction rating: null = not yet responded, 0 = bad, 1 = good, 2 = neutral")
-    fields_answered: Optional[StrictInt] = None
-    token: Optional[StrictStr] = None
-    expiry_time: Optional[StrictInt] = None
-    values: Optional[List[Dict[str, Any]]] = None
-    form: Optional[FeedbackForm] = None
+    channel_id: Optional[StrictInt] = None
+    user_id: Optional[StrictInt] = None
+    user_ip_address: Optional[StrictStr] = None
+    by: Optional[StrictInt] = Field(default=None, description="Author type: 0 = operator, 1 = user (customer)")
+    type: Optional[StrictInt] = Field(default=None, description="Message type: 0 = message, 1 = internal note")
+    text: Optional[StrictStr] = None
+    is_draft: Optional[StrictInt] = None
+    social_id: Optional[StrictStr] = None
     created_at: Optional[StrictInt] = None
     updated_at: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["id", "ticket_id", "form_id", "rating", "fields_answered", "token", "expiry_time", "values", "form", "created_at", "updated_at"]
+    user: Optional[UserSummary] = None
+    __properties: ClassVar[List[str]] = ["id", "ticket_id", "channel_id", "user_id", "user_ip_address", "by", "type", "text", "is_draft", "social_id", "created_at", "updated_at", "user"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -59,7 +61,7 @@ class Feedback(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Feedback from a JSON string"""
+        """Create an instance of Message from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,24 +82,29 @@ class Feedback(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of form
-        if self.form:
-            _dict['form'] = self.form.to_dict()
-        # set to None if rating (nullable) is None
+        # override the default output from pydantic by calling `to_dict()` of user
+        if self.user:
+            _dict['user'] = self.user.to_dict()
+        # set to None if user_ip_address (nullable) is None
         # and model_fields_set contains the field
-        if self.rating is None and "rating" in self.model_fields_set:
-            _dict['rating'] = None
+        if self.user_ip_address is None and "user_ip_address" in self.model_fields_set:
+            _dict['user_ip_address'] = None
 
-        # set to None if form (nullable) is None
+        # set to None if social_id (nullable) is None
         # and model_fields_set contains the field
-        if self.form is None and "form" in self.model_fields_set:
-            _dict['form'] = None
+        if self.social_id is None and "social_id" in self.model_fields_set:
+            _dict['social_id'] = None
+
+        # set to None if user (nullable) is None
+        # and model_fields_set contains the field
+        if self.user is None and "user" in self.model_fields_set:
+            _dict['user'] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Feedback from a dict"""
+        """Create an instance of Message from a dict"""
         if obj is None:
             return None
 
@@ -107,15 +114,17 @@ class Feedback(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "ticket_id": obj.get("ticket_id"),
-            "form_id": obj.get("form_id"),
-            "rating": obj.get("rating"),
-            "fields_answered": obj.get("fields_answered"),
-            "token": obj.get("token"),
-            "expiry_time": obj.get("expiry_time"),
-            "values": obj.get("values"),
-            "form": FeedbackForm.from_dict(obj["form"]) if obj.get("form") is not None else None,
+            "channel_id": obj.get("channel_id"),
+            "user_id": obj.get("user_id"),
+            "user_ip_address": obj.get("user_ip_address"),
+            "by": obj.get("by"),
+            "type": obj.get("type"),
+            "text": obj.get("text"),
+            "is_draft": obj.get("is_draft"),
+            "social_id": obj.get("social_id"),
             "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at")
+            "updated_at": obj.get("updated_at"),
+            "user": UserSummary.from_dict(obj["user"]) if obj.get("user") is not None else None
         })
         return _obj
 

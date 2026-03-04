@@ -38,7 +38,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from supportpal_api_client.models.ticket import Ticket
+from supportpal_client.models.ticket import Ticket
 
 # TODO update the JSON string below
 json = "{}"

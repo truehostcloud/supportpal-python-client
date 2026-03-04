@@ -17,21 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from supportpal_api_client.models.operator import Operator
+from supportpal_client.models.ticket import Ticket
 from typing import Optional, Set
 from typing_extensions import Self
 
-class OperatorListResponse(BaseModel):
+class TicketResponse(BaseModel):
     """
-    OperatorListResponse
+    TicketResponse
     """ # noqa: E501
     status: Optional[StrictStr] = None
     message: Optional[StrictStr] = None
-    count: Optional[StrictInt] = Field(default=None, description="Total number of records matching the query")
-    data: Optional[List[Operator]] = None
-    __properties: ClassVar[List[str]] = ["status", "message", "count", "data"]
+    data: Optional[Ticket] = None
+    __properties: ClassVar[List[str]] = ["status", "message", "data"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -52,7 +51,7 @@ class OperatorListResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of OperatorListResponse from a JSON string"""
+        """Create an instance of TicketResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,13 +72,9 @@ class OperatorListResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of data
         if self.data:
-            for _item_data in self.data:
-                if _item_data:
-                    _items.append(_item_data.to_dict())
-            _dict['data'] = _items
+            _dict['data'] = self.data.to_dict()
         # set to None if message (nullable) is None
         # and model_fields_set contains the field
         if self.message is None and "message" in self.model_fields_set:
@@ -89,7 +84,7 @@ class OperatorListResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of OperatorListResponse from a dict"""
+        """Create an instance of TicketResponse from a dict"""
         if obj is None:
             return None
 
@@ -99,8 +94,7 @@ class OperatorListResponse(BaseModel):
         _obj = cls.model_validate({
             "status": obj.get("status"),
             "message": obj.get("message"),
-            "count": obj.get("count"),
-            "data": [Operator.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None
+            "data": Ticket.from_dict(obj["data"]) if obj.get("data") is not None else None
         })
         return _obj
 

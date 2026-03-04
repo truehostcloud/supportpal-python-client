@@ -18,11 +18,11 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictInt
 from typing import Optional
 from typing_extensions import Annotated
-from supportpal_api_client.models.feedback_list_response import FeedbackListResponse
+from supportpal_client.models.feedback_list_response import FeedbackListResponse
 
-from supportpal_api_client.api_client import ApiClient, RequestSerialized
-from supportpal_api_client.api_response import ApiResponse
-from supportpal_api_client.rest import RESTResponseType
+from supportpal_client.api_client import ApiClient, RequestSerialized
+from supportpal_client.api_response import ApiResponse
+from supportpal_client.rest import RESTResponseType
 
 
 class FeedbackApi:

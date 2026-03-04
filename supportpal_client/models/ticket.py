@@ -19,11 +19,11 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from supportpal_api_client.models.channel import Channel
-from supportpal_api_client.models.department import Department
-from supportpal_api_client.models.priority import Priority
-from supportpal_api_client.models.ticket_status import TicketStatus
-from supportpal_api_client.models.user_summary import UserSummary
+from supportpal_client.models.channel import Channel
+from supportpal_client.models.department import Department
+from supportpal_client.models.priority import Priority
+from supportpal_client.models.ticket_status import TicketStatus
+from supportpal_client.models.user_summary import UserSummary
 from typing import Optional, Set
 from typing_extensions import Self
 
