@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **subject** | **str** |  | [optional] 
 **due_time** | **int** |  | [optional] 
 **resolved_time** | **int** |  | [optional] 
-**cc** | **List[str]** |  | [optional] 
+**cc** | [**TicketCc**](TicketCc.md) |  | [optional] 
 **locked** | **int** |  | [optional] 
 **merged** | **int** |  | [optional] 
 **internal** | **int** |  | [optional] 

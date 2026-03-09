@@ -1,6 +1,6 @@
 [project]
 name = "supportpal_client"
-version = "1.0.0"
+version = "1.0.1"
 description = "SupportPal REST API"
 authors = [
   {name = "OpenAPI Generator Community",email = "team@openapitools.org"},
@@ -10,10 +10,10 @@ keywords = ["OpenAPI", "OpenAPI-Generator", "SupportPal REST API"]
 requires-python = ">=3.9"
 
 dependencies = [
-  "urllib3>=2.1.0,<3.0.0",
-  "python-dateutil>=2.8.2",
-  "pydantic>=2.11",
-  "typing-extensions>=4.7.1",
+  "urllib3 (>=2.1.0,<3.0.0)",
+  "python-dateutil (>=2.8.2)",
+  "pydantic (>=2.11)",
+  "typing-extensions (>=4.7.1)",
 ]
 
 [project.urls]

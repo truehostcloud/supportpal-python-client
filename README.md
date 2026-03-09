@@ -120,6 +120,7 @@ Class | Method | HTTP request | Description
  - [OperatorResponse](docs/OperatorResponse.md)
  - [Priority](docs/Priority.md)
  - [Ticket](docs/Ticket.md)
+ - [TicketCc](docs/TicketCc.md)
  - [TicketListResponse](docs/TicketListResponse.md)
  - [TicketResponse](docs/TicketResponse.md)
  - [TicketStatus](docs/TicketStatus.md)

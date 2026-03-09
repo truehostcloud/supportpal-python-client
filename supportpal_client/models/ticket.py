@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from supportpal_client.models.channel import Channel
 from supportpal_client.models.department import Department
 from supportpal_client.models.priority import Priority
+from supportpal_client.models.ticket_cc import TicketCc
 from supportpal_client.models.ticket_status import TicketStatus
 from supportpal_client.models.user_summary import UserSummary
 from typing import Optional, Set
@@ -44,7 +45,7 @@ class Ticket(BaseModel):
     subject: Optional[StrictStr] = None
     due_time: Optional[StrictInt] = None
     resolved_time: Optional[StrictInt] = None
-    cc: Optional[List[StrictStr]] = None
+    cc: Optional[TicketCc] = None
     locked: Optional[StrictInt] = None
     merged: Optional[StrictInt] = None
     internal: Optional[StrictInt] = None
@@ -102,6 +103,9 @@ class Ticket(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of cc
+        if self.cc:
+            _dict['cc'] = self.cc.to_dict()
         # override the default output from pydantic by calling `to_dict()` of department
         if self.department:
             _dict['department'] = self.department.to_dict()
@@ -197,7 +201,7 @@ class Ticket(BaseModel):
             "subject": obj.get("subject"),
             "due_time": obj.get("due_time"),
             "resolved_time": obj.get("resolved_time"),
-            "cc": obj.get("cc"),
+            "cc": TicketCc.from_dict(obj["cc"]) if obj.get("cc") is not None else None,
             "locked": obj.get("locked"),
             "merged": obj.get("merged"),
             "internal": obj.get("internal"),

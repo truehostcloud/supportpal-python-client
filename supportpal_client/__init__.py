@@ -44,6 +44,7 @@ __all__ = [
     "OperatorResponse",
     "Priority",
     "Ticket",
+    "TicketCc",
     "TicketListResponse",
     "TicketResponse",
     "TicketStatus",
@@ -81,6 +82,7 @@ from supportpal_client.models.operator_list_response import OperatorListResponse
 from supportpal_client.models.operator_response import OperatorResponse as OperatorResponse
 from supportpal_client.models.priority import Priority as Priority
 from supportpal_client.models.ticket import Ticket as Ticket
+from supportpal_client.models.ticket_cc import TicketCc as TicketCc
 from supportpal_client.models.ticket_list_response import TicketListResponse as TicketListResponse
 from supportpal_client.models.ticket_response import TicketResponse as TicketResponse
 from supportpal_client.models.ticket_status import TicketStatus as TicketStatus

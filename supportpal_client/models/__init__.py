@@ -26,6 +26,7 @@ from supportpal_client.models.operator_list_response import OperatorListResponse
 from supportpal_client.models.operator_response import OperatorResponse
 from supportpal_client.models.priority import Priority
 from supportpal_client.models.ticket import Ticket
+from supportpal_client.models.ticket_cc import TicketCc
 from supportpal_client.models.ticket_list_response import TicketListResponse
 from supportpal_client.models.ticket_response import TicketResponse
 from supportpal_client.models.ticket_status import TicketStatus

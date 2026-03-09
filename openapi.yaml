@@ -158,9 +158,13 @@ components:
           type: integer
           nullable: true
         cc:
-          type: array
-          items:
-            type: string
+          anyOf:
+            - type: array
+              items:
+                type: string
+            - type: object
+              additionalProperties:
+                type: string
         locked:
           type: integer
         merged:
