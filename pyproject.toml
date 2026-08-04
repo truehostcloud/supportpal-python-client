@@ -1,6 +1,6 @@
 [project]
 name = "supportpal_client"
-version = "1.0.2"
+version = "1.0.3"
 description = "SupportPal REST API"
 authors = [
   {name = "OpenAPI Generator Community",email = "team@openapitools.org"},

@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: SupportPal REST API
-  version: 1.0.2
+  version: 1.0.3
   description: API for accessing SupportPal tickets, messages, operators, and feedback
     for AI-powered ticket analysis.
 servers:
