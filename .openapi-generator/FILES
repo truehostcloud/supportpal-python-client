@@ -63,5 +63,4 @@ supportpal_client/py.typed
 supportpal_client/rest.py
 test-requirements.txt
 test/__init__.py
-test/test_ticket_cc.py
 tox.ini

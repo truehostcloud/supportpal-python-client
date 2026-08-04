@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
 **order** | **int** |  | [optional] 
-**parent** | **int** |  | [optional] 
+**parent** | [**Department**](Department.md) |  | [optional] 
 **public** | **int** |  | [optional] 
 **created_at** | **int** |  | [optional] 
 **updated_at** | **int** |  | [optional] 
